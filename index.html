@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Easy Diet • PUC Rio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Easy Diet</h1>
+
+    <div class="date-controls">
+      <button id="prevDayBtn" class="btn" title="Dia anterior">&#x25C0;</button>
+      <input type="date" id="dateInput" />
+      <button id="nextDayBtn" class="btn" title="Próximo dia">&#x25B6;</button>
+    </div>
+
+    <div class="actions">
+      <button id="addFoodBtn" class="btn btn--primary">Cadastrar alimento</button>
+      <button id="addMealBtn" class="btn btn--primary">Adicionar refeição</button>
+    </div>
+  </header>
+
+  <section class="main-image">
+    <img src="./img/meal-image.jpg" alt="Easy Diet" />
+  </section>
+
+  <main class="container">
+    <section class="summary card">
+      <h2>Resumo do dia</h2>
+      <div>Total de calorias: <strong id="totalCalories">0</strong> kcal</div>
+    </section>
+
+    <section class="meals">
+      <h2>Refeições</h2>
+      <div id="mealsList" class="meals__list"></div>
+      <div id="emptyState" class="empty">Nenhuma refeição para este dia.</div>
+    </section>
+  </main>
+
+  <div id="mealModal" class="modal" aria-hidden="true">
+    <div class="modal__dialog">
+      <header class="modal__header">
+        <h3>Nova refeição</h3>
+        <button id="closeMealModal" class="btn btn--icon" aria-label="Fechar">&times;</button>
+      </header>
+      <div class="modal__body">
+        <form id="mealForm">
+          <label class="field">
+            <span>Tipo</span>
+            <select id="mealType" required>
+              <option value="breakfast">Café da manhã</option>
+              <option value="lunch">Almoço</option>
+              <option value="dinner">Jantar</option>
+              <option value="snack">Lanche</option>
+            </select>
+          </label>
+
+          <fieldset class="items-fieldset">
+            <legend>Itens</legend>
+            <div id="itemsContainer"></div>
+            <button type="button" id="addItemRowBtn" class="btn">+ adicionar item</button>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn--primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="foodModal" class="modal" aria-hidden="true">
+    <div class="modal__dialog">
+      <header class="modal__header">
+        <h3>Novo alimento</h3>
+        <button id="closeFoodModal" class="btn btn--icon" aria-label="Fechar">&times;</button>
+      </header>
+      <div class="modal__body">
+        <form id="foodForm">
+          <label class="field">
+            <span>Nome</span>
+            <input id="foodName" required />
+          </label>
+          <div class="row">
+            <label class="field">
+              <span>Quantidade base</span>
+              <input id="foodAmount" type="number" step="0.1" min="0" value="100" required />
+            </label>
+            <label class="field">
+              <span>Unidade</span>
+              <input id="foodUnit" value="g" required />
+            </label>
+          </div>
+          <label class="field">
+            <span>Calorias (por quantidade base)</span>
+            <input id="foodCalories" type="number" step="0.1" min="0" required />
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn--primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <template id="itemRowTemplate">
+    <div class="item-row">
+      <select class="foodSelect"></select>
+      <input class="qtyInput" type="number" step="0.1" min="0" value="1" />
+      <span class="unitHint"></span>
+      <button type="button" class="btn btn--icon removeRowBtn" title="Remover item">&times;</button>
+    </div>
+  </template>
+
+  <footer class="footer_by">
+    <small>Criado por Mauro Santos</small>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
